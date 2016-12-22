@@ -1,0 +1,40 @@
+{
+  "name": "13-mongo_and_express_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "DEBUG='dogs*' mocha",
+    "start": "DEBUG='dogs*' node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peterkim2/13-mongo_and_express_api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/peterkim2/13-mongo_and_express_api/issues"
+  },
+  "homepage": "https://github.com/peterkim2/13-mongo_and_express_api#readme",
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.1",
+    "debug": "^2.5.1",
+    "express": "^4.14.0",
+    "mongoose": "^4.7.4",
+    "morgan": "^1.7.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "gulp": "^3.9.1",
+    "gulp-cache": "^0.4.5",
+    "gulp-eslint": "^3.0.1",
+    "gulp-istanbul": "^1.1.1",
+    "gulp-mocha": "^3.0.1",
+    "mocha": "^3.2.0",
+    "superagent": "^3.3.1"
+  }
+}
