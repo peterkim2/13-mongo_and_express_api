@@ -26,7 +26,7 @@ describe('Dog Routes', function() {
         }
         done();
       });
-      it('should return a dog', => {
+      it('should return a dog', done => {
         request.post(`${url}/api/dog`)
         .send(exampleDog)
         .end((err, res) => {
@@ -52,7 +52,7 @@ describe('Dog Routes', function() {
         })
         .catch(done);
       });
-      it('should return a dog', => {
+      it('should return a dog', done => {
         request.get(`${url}/api/dog/${this.tempDog._id}`)
         .end((err, res) => {
           if (err) return done(err);

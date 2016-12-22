@@ -5,7 +5,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const Promise = require('bluebird');
 const mongoose = require('mongoose');
-const dogRouter = require('./route/dog-router.js');
+const dogRouter = require('./route/dog-route.js');
 const debug = require('debug')('dog:server');
 
 const app = express();
@@ -17,7 +17,7 @@ mongoose.connect(MONGODB_URI);
 
 app.use(cors());
 app.use(morgan('dev'));
-// app.use(dogRouter);
+app.use(dogRouter);
 
 app.listen(PORT, () => {
   debug('Server up:', PORT);

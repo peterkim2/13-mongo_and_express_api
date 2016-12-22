@@ -22,3 +22,15 @@ dogRouter.get('/api/dog/:id', function(req, res, next) {
   .then( dog => res.json(dog))
   .catch(next);
 });
+
+dogRouter.put('/api/dog/:id', jsonParser, function(req, res, next) {
+  debug('PUT: /api/dog/');
+
+  Dog.findById(req.params.id)
+  .then( dog => {
+    dog.set({ name: req.body.name, breed: req.body.breed, color: req.body.color});
+    dog.save();
+    res.json(dog);
+  })
+  .catch(next);
+});
