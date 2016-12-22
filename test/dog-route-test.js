@@ -65,4 +65,28 @@ describe('Dog Routes', function() {
       });
     });
   });
+  describe('PUT: /api/dog:id', function() {
+    describe('with a valid body', function() {
+      before( done => {
+        new Dog(exampleDog).save()
+        .then( dog => {
+          this.tempDog = dog;
+          done();
+        })
+        .catch(done);
+      });
+      it('should update and return dog', done => {
+        request.put(`${url}/api/dog/${this.tempDog._id}`)
+        .send({name:'update name', breed:'update breed', color:'update color'})
+        .end((err, res) => {
+          if(err) return done(err);
+          expect(res.status).to.equal(200);
+          expect(res.body.name).to.equal('update name');
+          expect(res.body.breed).to.equal('update breed');
+          expect(res.body.color).to.equal('update color');
+          done();
+        });
+      });
+    });
+  });
 });
