@@ -2,15 +2,15 @@
 
 const mongoose = require('mongoose');
 const createError = require('http-errors');
-const debug = require('debug')('dog:list');
+const debug = require('debug')('dog:size');
 const Schema = mongoose.Schema;
 
 const Dog = require('./dogs.js');
 
 const sizeSchema = Schema ({
   name: { type: String, require: true},
-  timestamp: { type: Date, required: true},
-  notes: [{ type: Schema.Types.ObjectId, ref: 'dog'}]
+  timestamp: { type: Date, required: false},
+  dogs: [{ type: Schema.Types.ObjectId, ref: 'dog'}]
 });
 
 const Size = module.exports =  mongoose.model('size', sizeSchema);
