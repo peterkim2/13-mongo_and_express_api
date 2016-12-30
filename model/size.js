@@ -9,7 +9,7 @@ const Dog = require('./dogs.js');
 
 const sizeSchema = Schema ({
   name: { type: String, require: true},
-  timestamp: { type: Date, required: false},
+  timestamp: { type: Date, required: true},
   dogs: [{ type: Schema.Types.ObjectId, ref: 'dog'}]
 });
 
@@ -32,5 +32,22 @@ Size.findByIdAndAddDog = function(id, dog) {
   })
   .then( () => {
     return this.tempDog;
+  });
+};
+
+Size.findByIdAndRemoveDog = function(id) {
+  debug('findByIdAndRemoveDog');
+
+  return Dog.findById(id)
+  .catch(err => Promise.reject(createError(404, err.message)))
+  .then( dog => {
+    this.tempDog = dog;
+    return Dog.findByIdAndRemove(dog._id);
+  })
+  .then( () => Size.findById(this.tempDog.sizeID))
+  .then( size => {
+    size.dogs.splice(size.dogs.indexOf(this.tempDog._id), 1);
+    this.tempSize = size;
+    return this.tempSize;
   });
 };
